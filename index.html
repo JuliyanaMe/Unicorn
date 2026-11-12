@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff3fb">
+  <title>Unicorn Mood Garden</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Trebuchet MS", "Arial Rounded MT Bold", system-ui, sans-serif;
+      color: #49365f;
+      background: #fff3fb;
+      font-synthesis: none;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px 16px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 12% 18%, #ffe1ef 0 7%, transparent 7.2%),
+        radial-gradient(ellipse at 87% 82%, #e8e4ff 0 10%, transparent 10.2%),
+        linear-gradient(145deg, #fff8fc, #f4efff);
+    }
+
+    .card {
+      width: min(100%, 560px);
+      padding: clamp(22px, 5vw, 40px);
+      text-align: center;
+      border: 2px solid #fff;
+      border-radius: 32px;
+      background: rgb(255 255 255 / 84%);
+      box-shadow: 0 20px 60px rgb(112 75 140 / 14%);
+    }
+
+    h1 { margin: 0; color: #8056a5; font-size: clamp(2rem, 7vw, 3rem); }
+    .intro { margin: 8px 0 0; color: #786b88; }
+    .stage {
+      position: relative;
+      width: min(100%, 350px);
+      margin: 16px auto 4px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #fff8fd, #f6f1ff);
+    }
+    .sparkle { position: absolute; color: #f0b5d4; font-size: 24px; animation: twinkle 2.4s ease-in-out infinite; }
+    .sparkle.one { top: 17%; left: 9%; }
+    .sparkle.two { top: 29%; right: 8%; animation-delay: .8s; }
+    .sparkle.three { bottom: 17%; left: 17%; animation-delay: 1.4s; }
+    svg { display: block; width: 100%; height: auto; }
+    .unicorn { transform-origin: 50% 80%; animation: bob 3s ease-in-out infinite; }
+    .eye, .brow, .mouth, .tear, .heart, .zzz { display: none; }
+    .expression-happy .happy,
+    .expression-excited .excited,
+    .expression-shy .shy,
+    .expression-sleepy .sleepy,
+    .expression-surprised .surprised { display: initial; }
+    .heart { animation: float 1.6s ease-in-out infinite; transform-origin: center; }
+    .zzz { animation: float 2s ease-in-out infinite; }
+
+    .mood-name { min-height: 1.7em; margin: 12px 0 4px; color: #8056a5; font-size: 1.35rem; font-weight: 800; }
+    .hint { margin: 0 0 16px; color: #867b93; font-size: .92rem; }
+    .moods { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; }
+    .mood-button {
+      min-width: 0;
+      padding: 10px 4px;
+      border: 2px solid #eee5f5;
+      border-radius: 16px;
+      color: #59466b;
+      background: #fff;
+      font: inherit;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .mood-button:hover { transform: translateY(-3px); border-color: #caa8e3; }
+    .mood-button[aria-pressed="true"] { border-color: #a875c8; background: #f7edff; box-shadow: 0 4px 12px rgb(128 86 165 / 12%); }
+    .mood-button .number { display: block; margin-top: 3px; color: #9c8da9; font-size: .75rem; }
+    .footer { margin: 19px 0 0; color: #9a8da4; font-size: .8rem; }
+
+    @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-7px) rotate(1deg); } }
+    @keyframes twinkle { 0%, 100% { opacity: .55; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.15); } }
+    @keyframes float { 0%, 100% { opacity: .6; transform: translateY(0) scale(.95); } 50% { opacity: 1; transform: translateY(-7px) scale(1.08); } }
+    @media (max-width: 390px) { .moods { gap: 5px; } .mood-button { font-size: .82rem; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Unicorn Mood Garden <span aria-hidden="true">🦄</span></h1>
+    <p class="intro">A little unicorn with five big feelings.</p>
+
+    <div class="stage" id="stage" aria-label="A cute unicorn changing its expression">
+      <span class="sparkle one" aria-hidden="true">✦</span>
+      <span class="sparkle two" aria-hidden="true">✧</span>
+      <span class="sparkle three" aria-hidden="true">✦</span>
+      <svg class="unicorn" viewBox="0 0 360 340" role="img" aria-labelledby="unicornTitle unicornDesc">
+        <title id="unicornTitle">A cute pastel unicorn</title>
+        <desc id="unicornDesc">The unicorn looks happy.</desc>
+        <defs>
+          <linearGradient id="horn" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffe985"/><stop offset="1" stop-color="#ffb36b"/></linearGradient>
+          <linearGradient id="mane" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ff9fc9"/><stop offset=".52" stop-color="#c9a1ff"/><stop offset="1" stop-color="#8edff0"/></linearGradient>
+          <linearGradient id="face" x1="0" x2=".8" y1="0" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff0f8"/></linearGradient>
+        </defs>
+        <!-- flowing mane behind the face -->
+        <path d="M91 166c-30-28-15-69 14-74-8-30 20-50 47-34 19-30 59-22 66 8 31-9 53 20 39 47 30 18 24 56-3 68l-22 97H107z" fill="url(#mane)" stroke="#9b72bd" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M117 93c-17-20 1-40 20-31m28-8c-5-23 23-32 35-12m29 15c18-12 37 7 27 23m-121 62c-25-3-31 22-13 34m144-12c21 6 22 30 3 39" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+        <!-- ears -->
+        <path d="M119 118 92 67q-5-12 8-8l47 37m78 21 29-48q7-11 11 2l5 65" fill="#fff" stroke="#9b72bd" stroke-width="5" stroke-linejoin="round"/>
+        <path d="m112 101-10-25 27 21m100 19 18-30 1 36" fill="#ffb7d5"/>
+        <!-- horn -->
+        <path d="m161 88 22-66q3-9 8 0l25 67z" fill="url(#horn)" stroke="#9b72bd" stroke-width="5" stroke-linejoin="round"/>
+        <path d="m174 73 18 3m-10-21 17 4m-10-22 12 4" fill="none" stroke="#fff6c8" stroke-width="5" stroke-linecap="round"/>
+        <!-- face -->
+        <path d="M91 150c0-43 37-72 89-72s89 29 89 72v61c0 53-38 91-89 91s-89-38-89-91z" fill="url(#face)" stroke="#9b72bd" stroke-width="5"/>
+        <!-- eyes: expressions swap with the selected mood -->
+        <g class="eye happy shy">
+          <path d="M132 177q13 20 26 0" fill="none" stroke="#49365f" stroke-width="6" stroke-linecap="round"/>
+          <path d="M204 177q13 20 26 0" fill="none" stroke="#49365f" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        <g class="eye excited">
+          <ellipse cx="145" cy="176" rx="9" ry="13" fill="#49365f"/><ellipse cx="215" cy="176" rx="9" ry="13" fill="#49365f"/>
+          <circle cx="148" cy="172" r="3" fill="#fff"/><circle cx="218" cy="172" r="3" fill="#fff"/>
+        </g>
+        <g class="eye sleepy">
+          <path d="M132 180q13-8 26 0m46 0q13-8 26 0" fill="none" stroke="#49365f" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        <g class="eye surprised">
+          <ellipse cx="145" cy="177" rx="10" ry="15" fill="#49365f"/><ellipse cx="215" cy="177" rx="10" ry="15" fill="#49365f"/>
+          <circle cx="148" cy="173" r="3" fill="#fff"/><circle cx="218" cy="173" r="3" fill="#fff"/>
+        </g>
+        <!-- brows -->
+        <g class="brow surprised" fill="none" stroke="#8056a5" stroke-width="5" stroke-linecap="round"><path d="m132 151 22-6m42 0 22 6"/></g>
+        <g class="brow sleepy" fill="none" stroke="#8056a5" stroke-width="4" stroke-linecap="round"><path d="m133 160 20 2m49-2 20 2"/></g>
+        <!-- cheeks and muzzle -->
+        <ellipse cx="120" cy="204" rx="15" ry="8" fill="#ffb7d5" opacity=".8"/>
+        <ellipse cx="240" cy="204" rx="15" ry="8" fill="#ffb7d5" opacity=".8"/>
+        <ellipse cx="180" cy="211" rx="32" ry="25" fill="#fff" stroke="#f2ddec" stroke-width="3"/>
+        <path d="M175 203q5-5 10 0-1 8-5 8t-5-8" fill="#e98bb3"/>
+        <!-- mouths -->
+        <g class="mouth happy"><path d="M168 219q12 19 24 0" fill="#ff91b9" stroke="#49365f" stroke-width="4" stroke-linecap="round"/></g>
+        <g class="mouth excited"><path d="M169 217q11-5 22 0 1 18-11 18t-11-18" fill="#ff83ad" stroke="#49365f" stroke-width="4"/></g>
+        <g class="mouth shy"><path d="M173 222q7 5 14 0" fill="none" stroke="#49365f" stroke-width="4" stroke-linecap="round"/></g>
+        <g class="mouth sleepy"><path d="M174 222q6 4 12 0" fill="none" stroke="#49365f" stroke-width="4" stroke-linecap="round"/></g>
+        <g class="mouth surprised"><ellipse cx="180" cy="224" rx="7" ry="10" fill="#ff91b9" stroke="#49365f" stroke-width="4"/></g>
+        <path class="heart" d="M267 126c-8-11-24 0 0 19 24-19 8-30 0-19" fill="#ff8db8"/>
+        <text class="zzz" x="258" y="116" fill="#9a7bc1" font-size="25" font-weight="bold">Zzz</text>
+        <path class="tear" d="M239 190q12 16 0 21-12-5 0-21" fill="#85d5ef"/>
+      </svg>
+    </div>
+
+    <p class="mood-name" id="moodName" aria-live="polite">Happy</p>
+    <p class="hint">Choose a feeling, or press a number key from 1 to 5.</p>
+    <div class="moods" role="group" aria-label="Choose unicorn's emotion">
+      <button class="mood-button" type="button" data-mood="happy" aria-pressed="true">😊<span class="number">1 Happy</span></button>
+      <button class="mood-button" type="button" data-mood="excited" aria-pressed="false">🤩<span class="number">2 Excited</span></button>
+      <button class="mood-button" type="button" data-mood="shy" aria-pressed="false">😊<span class="number">3 Shy</span></button>
+      <button class="mood-button" type="button" data-mood="sleepy" aria-pressed="false">😴<span class="number">4 Sleepy</span></button>
+      <button class="mood-button" type="button" data-mood="surprised" aria-pressed="false">😮<span class="number">5 Surprised</span></button>
+    </div>
+    <p class="footer">Made with a little magic and lots of feelings ✨</p>
+  </main>
+  <script>
+    const moods = [
+      { name: "Happy", className: "happy", desc: "The unicorn looks happy." },
+      { name: "Excited", className: "excited", desc: "The unicorn looks super excited." },
+      { name: "Shy", className: "shy", desc: "The unicorn looks shy and bashful." },
+      { name: "Sleepy", className: "sleepy", desc: "The unicorn looks sleepy." },
+      { name: "Surprised", className: "surprised", desc: "The unicorn looks surprised." }
+    ];
+    const stage = document.querySelector("#stage");
+    const moodName = document.querySelector("#moodName");
+    const description = document.querySelector("#unicornDesc");
+    const buttons = [...document.querySelectorAll(".mood-button")];
+
+    function setMood(index) {
+      const mood = moods[index];
+      stage.className = `stage expression-${mood.className}`;
+      moodName.textContent = mood.name;
+      description.textContent = mood.desc;
+      buttons.forEach((button, buttonIndex) => {
+        button.setAttribute("aria-pressed", String(buttonIndex === index));
+      });
+    }
+
+    buttons.forEach((button, index) => button.addEventListener("click", () => setMood(index)));
+    document.addEventListener("keydown", (event) => {
+      if (/^[1-5]$/.test(event.key) && !event.altKey && !event.ctrlKey && !event.metaKey) {
+        setMood(Number(event.key) - 1);
+      }
+    });
+  </script>
+</body>
+</html>
