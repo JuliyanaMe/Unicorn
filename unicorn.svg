@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" role="img" aria-labelledby="title description">
+  <title id="title">Cute Sparkly Unicorn</title>
+  <desc id="description">A pastel pink chibi unicorn with sparkling eyes, a lavender mane, a rainbow tail, and a golden horn.</desc>
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff5fb"/>
+      <stop offset="1" stop-color="#f3c8e8"/>
+    </linearGradient>
+    <linearGradient id="mane" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d9b8ff"/>
+      <stop offset="1" stop-color="#ffb9dc"/>
+    </linearGradient>
+    <linearGradient id="horn" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffd966"/>
+      <stop offset=".5" stop-color="#fff1a8"/>
+      <stop offset="1" stop-color="#ffb84d"/>
+    </linearGradient>
+    <linearGradient id="rainbow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7da9"/>
+      <stop offset=".22" stop-color="#ffb45c"/>
+      <stop offset=".43" stop-color="#ffe36e"/>
+      <stop offset=".62" stop-color="#7ee6ae"/>
+      <stop offset=".8" stop-color="#76c9ff"/>
+      <stop offset="1" stop-color="#bb91ff"/>
+    </linearGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- dreamy background -->
+  <path d="M0 0h640v520H0z" fill="#fff8fd"/>
+  <circle cx="320" cy="260" r="195" fill="#fce9f7" opacity=".6"/>
+  <g fill="#fff" opacity=".9">
+    <circle cx="104" cy="115" r="7"/><circle cx="523" cy="112" r="6"/><circle cx="557" cy="344" r="8"/>
+    <circle cx="88" cy="348" r="5"/><circle cx="455" cy="72" r="4"/><circle cx="171" cy="425" r="6"/>
+  </g>
+
+  <!-- rainbow tail -->
+  <path d="M430 325c48-6 71-32 89-66 16-30 41-42 64-26 22 15 13 42-7 54 20-5 38 7 37 26-2 23-25 34-50 26 15 17 10 42-10 51-25 11-50-8-50-34-18 25-42 35-73 26z" fill="url(#rainbow)" stroke="#e88fc2" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M491 322c26-3 43-21 56-46M511 345c25-8 43-21 59-42M521 373c24-1 41-11 55-28" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+
+  <!-- legs and hooves -->
+  <path d="M205 348c-3 45-7 75 4 91 8 12 38 12 46-1 7-12 0-48 5-85zM344 352c-4 42-8 73 4 87 9 11 37 10 44-3 6-12-1-47 4-82z" fill="url(#body)" stroke="#d99bc7" stroke-width="5"/>
+  <path d="M206 421c13 7 34 8 51 0l-1 18c-1 13-38 17-49 2zM348 420c13 7 31 8 48 1l-1 17c-2 13-36 17-47 3z" fill="#bd8ac5"/>
+
+  <!-- body -->
+  <ellipse cx="309" cy="326" rx="142" ry="83" fill="url(#body)" stroke="#d99bc7" stroke-width="5"/>
+  <ellipse cx="310" cy="348" rx="82" ry="48" fill="#fff" opacity=".45"/>
+
+  <!-- neck and oversized head -->
+  <path d="M257 274c-15 35-6 78 28 91 33 12 68-13 72-51l-15-61z" fill="url(#body)" stroke="#d99bc7" stroke-width="5"/>
+  <ellipse cx="274" cy="207" rx="111" ry="111" fill="url(#body)" stroke="#d99bc7" stroke-width="5"/>
+  <path d="M190 144c-10-47-51-53-65-26-12 24 11 57 53 73z" fill="#f8d9ef" stroke="#d99bc7" stroke-width="5"/>
+  <path d="M175 144c-6-24-25-30-33-15-6 12 8 30 31 39z" fill="#e9b5dc"/>
+  <path d="M354 142c25-43 62-37 67-8 4 25-25 49-64 55z" fill="#f8d9ef" stroke="#d99bc7" stroke-width="5"/>
+
+  <!-- forelock and mane -->
+  <path d="M181 165c-19-40 9-81 49-73 3-37 51-50 72-17 31-22 70 3 62 39 35 6 46 43 20 65-19 17-47 10-63-8-17 23-55 24-72 3-21 20-53 17-68-9z" fill="url(#mane)" stroke="#c58bd1" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M239 89c13 20 13 37 1 54M298 75c12 20 12 39 1 56M350 108c-9 13-11 27-6 42" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".65"/>
+
+  <!-- horn -->
+  <path d="M267 111l31-69 25 77z" fill="url(#horn)" stroke="#e6a84d" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M278 87l25 5M285 70l20 5" fill="none" stroke="#fff7c7" stroke-width="5" stroke-linecap="round"/>
+  <path d="M268 46l5-13 5 13 13 5-13 5-5 13-5-13-13-5z" fill="#ffe477" filter="url(#softGlow)"/>
+
+  <!-- big shiny eyes -->
+  <ellipse cx="235" cy="211" rx="20" ry="28" fill="#513b68"/>
+  <ellipse cx="315" cy="211" rx="20" ry="28" fill="#513b68"/>
+  <ellipse cx="229" cy="201" rx="7" ry="9" fill="#fff"/>
+  <ellipse cx="309" cy="201" rx="7" ry="9" fill="#fff"/>
+  <circle cx="242" cy="222" r="4" fill="#d5a5ff"/><circle cx="322" cy="222" r="4" fill="#d5a5ff"/>
+  <path d="M211 178q9-9 18-3M291 175q10-8 19-1" fill="none" stroke="#7c5985" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="196" cy="246" rx="16" ry="9" fill="#f4a8c9" opacity=".8"/>
+  <ellipse cx="352" cy="246" rx="16" ry="9" fill="#f4a8c9" opacity=".8"/>
+  <path d="M267 244q8 8 16 0" fill="none" stroke="#aa6d9d" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- sparkle accents -->
+  <g fill="#fff" filter="url(#softGlow)">
+    <path d="M420 180l5 14 14 5-14 5-5 14-5-14-14-5 14-5z"/>
+    <path d="M130 263l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+    <path d="M477 235l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/>
+  </g>
+  <g fill="#ffd96a"><circle cx="157" cy="192" r="4"/><circle cx="403" cy="288" r="4"/><circle cx="388" cy="119" r="3"/></g>
+  <ellipse cx="320" cy="463" rx="155" ry="16" fill="#e8b9dc" opacity=".35"/>
+</svg>
